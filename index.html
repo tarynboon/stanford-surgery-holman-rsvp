@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Holman 100 — Save the Date · Stanford Surgery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f5f0e8;
+      --cream-dark: #ede6d6;
+      --ink: #1a1714;
+      --ink-mid: #3a3530;
+      --ink-light: #6b6560;
+      --gold: #7a0f0f;
+      --gold-light: #a83232;
+      --rule: #c8a090;
+      --white: #fdfaf4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--cream);
+      border-bottom: 1px solid var(--rule);
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      min-height: unset;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(122,15,15,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(122,15,15,0.05) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .year-badge {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold-light);
+      padding: 0.35rem 1.1rem;
+      margin-bottom: 2.5rem;
+      display: inline-block;
+    }
+
+    .hero-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(7rem, 20vw, 16rem);
+      font-weight: 300;
+      line-height: 0.85;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      opacity: 0.08;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -60%);
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .hero-subtitle-top {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-date-line {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 3rem;
+    }
+
+    .hero-rule {
+      width: 80px;
+      height: 1px;
+      background: var(--rule);
+      margin: 0 auto 2rem;
+    }
+
+    .hero-desc {
+      font-size: 1.15rem;
+      color: var(--ink-mid);
+      max-width: 540px;
+      line-height: 1.8;
+      margin-bottom: 3rem;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 0.85rem 2.2rem;
+      text-decoration: none;
+      transition: background 0.25s, color 0.25s, border-color 0.25s;
+      cursor: pointer;
+    }
+    .cta-btn:hover {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--white);
+    }
+
+    /* MILESTONES ROW */
+    .milestone-row {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      margin: 0;
+      background: var(--cream-dark);
+    }
+    .milestone-item {
+      flex: 1;
+      max-width: 280px;
+      padding: 2rem 2.5rem;
+      border-right: 1px solid var(--rule);
+      text-align: left;
+    }
+    .milestone-item:last-child { border-right: none; }
+    .milestone-year {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .milestone-label {
+      font-size: 0.88rem;
+      color: var(--ink-light);
+      line-height: 1.45;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 4rem 2rem 6rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .section-eyebrow {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+    .section-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .section-body {
+      font-size: 1.05rem;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      max-width: 640px;
+    }
+
+    hr.ornament {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 1.5rem 0 2.5rem;
+      width: 100%;
+    }
+
+    /* EVENT DETAILS */
+    .event-details {
+      background: var(--cream-dark);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 5rem 2rem;
+    }
+    .event-details-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .day-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 3rem;
+      border: 1px solid var(--rule);
+    }
+    .day-card {
+      background: var(--white);
+      padding: 2.5rem 2rem;
+      border-right: 1px solid var(--rule);
+    }
+    .day-card:last-child { border-right: none; }
+    .day-card-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .day-card-date {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+    .day-card-items {
+      list-style: none;
+      font-size: 0.9rem;
+      color: var(--ink-mid);
+      line-height: 1.9;
+    }
+    .day-card-items li::before {
+      content: '—';
+      margin-right: 0.5rem;
+      color: var(--rule);
+    }
+
+    /* RSVP SECTION */
+    .rsvp-section {
+      padding: 6rem 2rem 7rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .rsvp-form-wrap {
+      background: #6e1010;
+      color: #fdfaf4;
+      color: var(--cream);
+      padding: 3.5rem 3rem;
+      margin-top: 3rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.8rem;
+    }
+    .form-group label {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,240,230,0.95);
+      margin-bottom: 0.8rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid rgba(255,220,200,0.5);
+      color: #fff;
+      font-family: 'EB Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      padding: 0.6rem 0;
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255,220,200,0.4);
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-bottom-color: rgba(255,240,230,1);
+    }
+    .form-group select {
+      cursor: pointer;
+      background-color: transparent;
+    }
+    .form-group select option {
+      background: var(--ink);
+      color: var(--cream);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .radio-group {
+      display: flex;
+      gap: 0;
+      border: 2px solid rgba(255,200,180,0.45);
+    }
+    .radio-opt {
+      flex: 1;
+      position: relative;
+    }
+    .radio-opt input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .radio-opt label {
+      display: block;
+      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,230,220,0.75);
+      padding: 1rem 0.5rem;
+      cursor: pointer;
+      border-right: 2px solid rgba(255,200,180,0.25);
+      transition: background 0.2s, color 0.2s;
+      margin: 0;
+    }
+    .radio-opt:last-child label { border-right: none; }
+    .radio-opt input[type="radio"]:checked + label {
+      background: rgba(255,255,255,0.18);
+      color: #fff;
+    }
+
+    .submit-btn {
+      display: inline-block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      background: transparent;
+      color: #fdfaf4;
+      border: 2px solid rgba(255,220,200,0.6);
+      padding: 1.1rem 3rem;
+      cursor: pointer;
+      transition: background 0.25s, border-color 0.25s, color 0.25s;
+      margin-top: 1.2rem;
+    }
+    .submit-btn:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,240,230,0.9);
+    }
+
+    .form-note {
+      font-size: 1rem;
+      color: rgba(255,220,200,0.4);
+      margin-top: 1.5rem;
+      line-height: 1.6;
+    }
+
+    /* SUCCESS MESSAGE */
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+    .success-msg .checkmark {
+      font-size: 2.5rem;
+      color: rgba(255,220,200,0.8);
+      margin-bottom: 1rem;
+    }
+    .success-msg h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: #fdfaf4;
+      margin-bottom: 0.8rem;
+    }
+    .success-msg p {
+      font-size: 1rem;
+      color: rgba(255,220,200,0.6);
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--rule);
+      background: var(--cream-dark);
+      padding: 2.5rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.8rem;
+      list-style: none;
+    }
+    .footer-links a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+    }
+    .footer-copy {
+      width: 100%;
+      font-size: 0.8rem;
+      color: var(--rule);
+      margin-top: 0.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-bottom-rule {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      max-width: 500px;
+      margin: 4rem auto 0;
+    }
+    .hero-bottom-rule span:first-child,
+    .hero-bottom-rule span:last-child {
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+      display: block;
+    }
+    .hero-bottom-ornament {
+      font-size: 0.65rem;
+      color: var(--gold);
+      letter-spacing: 0;
+      flex: none !important;
+      height: auto !important;
+      background: none !important;
+    }
+
+    /* SECTION BAND */
+    .section-band {
+      background: var(--gold);
+      border-top: 1px solid rgba(0,0,0,0.1);
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      padding: 1rem 2.5rem;
+    }
+    .section-band-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,240,230,0.9);
+    }
+    .band-rule {
+      flex: 1;
+      max-width: 120px;
+      height: 1px;
+      background: rgba(255,220,200,0.35);
+      display: block;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { opacity: 0; animation: fadeUp 0.8s ease forwards; }
+    .delay-1 { animation-delay: 0.15s; }
+    .delay-2 { animation-delay: 0.3s; }
+    .delay-3 { animation-delay: 0.45s; }
+    .delay-4 { animation-delay: 0.6s; }
+    .delay-5 { animation-delay: 0.75s; }
+
+    @media (max-width: 680px) {
+      nav { padding: 0 1.2rem; }
+      .nav-links { gap: 1rem; }
+      .milestone-row { flex-direction: column; }
+      .milestone-item { border-right: none; border-bottom: 1px solid var(--rule); max-width: 100%; }
+      .day-cards { grid-template-columns: 1fr; }
+      .day-card { border-right: none; border-bottom: 1px solid var(--rule); }
+      .form-row { grid-template-columns: 1fr; gap: 1.2rem; }
+      .rsvp-form-wrap { padding: 2.5rem 1.5rem; }
+      footer { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Holman 100 · Stanford Surgery</a>
+    <ul class="nav-links">
+      <li><a href="#details">Details</a></li>
+      <li><a href="#rsvp">RSVP</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-number" aria-hidden="true">100</div>
+
+    <div class="year-badge fade-up">Save the Date</div>
+
+    <p class="hero-subtitle-top fade-up delay-1">Stanford Department of Surgery</p>
+
+    <h1 class="hero-title fade-up delay-2">
+      Holman 100:<br><em>A Century of Surgery</em>
+    </h1>
+
+    <p class="hero-date-line fade-up delay-3">Friday · Saturday — 2026 · Stanford, California</p>
+
+
+
+    <p class="hero-desc fade-up delay-4">
+      Join us to celebrate one hundred years of Stanford Surgery — honoring the legacy 
+      of Emile Holman and the generations of surgeons, scholars, and healers who followed. 
+      We look forward to welcoming you on Friday and Saturday.
+    </p>
+
+    <a href="#rsvp" class="cta-btn fade-up delay-5">Reserve Your Place</a>
+  </div>
+
+  <div id="details"></div>
+
+  <!-- SECTION DIVIDER -->
+  <div class="section-band">
+    <div class="section-band-inner">
+      <span>1926</span>
+      <span class="band-rule"></span>
+      <span>Holman 100</span>
+      <span class="band-rule"></span>
+      <span>2026</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section>
+    <span class="section-eyebrow">The Centennial</span>
+    <h2 class="section-title">Where <em>precision</em><br>meets purpose.</h2>
+    <hr class="ornament" />
+    <p class="section-body">
+      Stanford Surgery traces its roots to 1908, when Stanford took over Cooper Medical College 
+      in San Francisco, and to the formal founding of its surgical division in 1926.
+    </p>
+    <br>
+    <p class="section-body">
+      Through a century of firsts — the first West Coast kidney transplant, the first U.S. adult 
+      heart transplant, the CyberKnife, and beyond — Stanford Surgery has led medicine from the 
+      operating room. The Holman 100 Centennial gathers our community of faculty, alumni, and friends 
+      to honor that legacy and launch the next century with the Holman 1-10-100 Fundraising Pledge.
+    </p>
+  </section>
+
+  <!-- EVENT DETAILS -->
+  <div class="event-details">
+    <div class="event-details-inner">
+      <span class="section-eyebrow">The Program</span>
+      <h2 class="section-title">The <em>Centennial</em> Weekend.</h2>
+      <hr class="ornament" />
+      <div class="day-cards">
+        <div class="day-card">
+          <span class="day-card-label">Friday Evening</span>
+          <div class="day-card-date">Welcome Reception</div>
+          <ul class="day-card-items">
+            <li>Cocktail reception</li>
+            <li>Welcome remarks</li>
+            <li>Seated dinner</li>
+            <li>Evening with colleagues</li>
+          </ul>
+        </div>
+        <div class="day-card">
+          <span class="day-card-label">Saturday</span>
+          <div class="day-card-date">Centennial Symposium</div>
+          <ul class="day-card-items">
+            <li>Full-day academic program</li>
+            <li>Five landmark chapters</li>
+            <li>Holman 1-10-100 Pledge</li>
+            <li>Celebration dinner</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RSVP -->
+  <div class="rsvp-section" id="rsvp">
+    <span class="section-eyebrow">RSVP</span>
+    <h2 class="section-title">Reserve your <em>place.</em></h2>
+    <hr class="ornament" />
+    <p class="section-body">
+      Let us know you're coming. Select the days you plan to attend and the Holman 100 
+      team will be in touch with full details as the date approaches.
+    </p>
+
+    <div class="rsvp-form-wrap">
+      <div id="rsvp-form-container">
+        <form id="rsvp-form" novalidate>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="first-name">First Name</label>
+              <input type="text" id="first-name" name="first-name" placeholder="Jane" required />
+            </div>
+            <div class="form-group">
+              <label for="last-name">Last Name</label>
+              <input type="text" id="last-name" name="last-name" placeholder="Smith" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+          </div>
+
+          <div class="form-group" style="margin-top: 2rem;">
+            <label style="margin-bottom: 1rem; display:block;">Which days will you attend?</label>
+            <div class="radio-group">
+              <div class="radio-opt">
+                <input type="radio" id="day-friday" name="attendance" value="Friday" required />
+                <label for="day-friday">Friday</label>
+              </div>
+              <div class="radio-opt">
+                <input type="radio" id="day-saturday" name="attendance" value="Saturday" />
+                <label for="day-saturday">Saturday</label>
+              </div>
+              <div class="radio-opt">
+                <input type="radio" id="day-both" name="attendance" value="Both" />
+                <label for="day-both">Both Days</label>
+              </div>
+            </div>
+          </div>
+
+          <div id="form-error" style="color: #e87c7c; font-size: 0.85rem; margin-top: 1rem; display: none; font-family: 'EB Garamond', serif;">
+            Please fill in all required fields.
+          </div>
+
+          <button type="submit" class="submit-btn">Confirm RSVP →</button>
+
+          <p class="form-note">
+            Your information will only be used to coordinate attendance. 
+            Full event details will be sent closer to the date.
+          </p>
+        </form>
+      </div>
+
+      <div class="success-msg" id="success-msg">
+        <div class="checkmark">✦</div>
+        <h3>You're on the list.</h3>
+        <p>We'll be in touch with all the details soon.<br>We can't wait to see you.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-logo">Holman 100 · Stanford Surgery · 1926–2026</span>
+    <ul class="footer-links">
+      <li><a href="#details">Details</a></li>
+      <li><a href="#rsvp">RSVP</a></li>
+    </ul>
+    <p class="footer-copy">2026 · Stanford University · Palo Alto, California</p>
+  </footer>
+
+  <script>
+    // ─── RSVP FORM → Google Forms ───────────────────────────────────────────
+    // TO CONNECT TO GOOGLE FORMS:
+    // 1. Create a Google Form with fields: First Name, Last Name, Email, Attendance
+    // 2. Get the prefilled link URL from the form's three-dot menu → "Get pre-filled link"
+    // 3. Fill in the GOOGLE_FORM_URL and ENTRY IDs below
+    //
+    const GOOGLE_FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLScdtYEhI0jK4lfoxkB4jy2W4kX4R84IIQzpfrWoUXoFBE5hxw/formResponse';
+    const FIELD_FIRST_NAME   = 'entry.1639542594';
+    const FIELD_LAST_NAME    = 'entry.1238259456';
+    const FIELD_EMAIL        = 'entry.1299840329';
+    const FIELD_ATTENDANCE   = 'entry.1776379752';
+    // ────────────────────────────────────────────────────────────────────────
+
+    const form   = document.getElementById('rsvp-form');
+    const errBox = document.getElementById('form-error');
+    const successBox = document.getElementById('success-msg');
+    const formContainer = document.getElementById('rsvp-form-container');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      errBox.style.display = 'none';
+
+      const firstName  = document.getElementById('first-name').value.trim();
+      const lastName   = document.getElementById('last-name').value.trim();
+      const email      = document.getElementById('email').value.trim();
+      const attendance = document.querySelector('input[name="attendance"]:checked');
+
+      if (!firstName || !lastName || !email || !attendance) {
+        errBox.style.display = 'block';
+        return;
+      }
+
+      // Submit to Google Forms via hidden iframe (no redirect)
+      const iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      iframe.name = 'hidden_iframe';
+      document.body.appendChild(iframe);
+
+      const hiddenForm = document.createElement('form');
+      hiddenForm.method = 'POST';
+      hiddenForm.action = GOOGLE_FORM_ACTION;
+      hiddenForm.target = 'hidden_iframe';
+
+      const fields = {
+        [FIELD_FIRST_NAME]:  firstName,
+        [FIELD_LAST_NAME]:   lastName,
+        [FIELD_EMAIL]:       email,
+        [FIELD_ATTENDANCE]:  attendance.value,
+      };
+
+      for (const [name, value] of Object.entries(fields)) {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = name;
+        input.value = value;
+        hiddenForm.appendChild(input);
+      }
+
+      document.body.appendChild(hiddenForm);
+      hiddenForm.submit();
+
+      // Show success
+      setTimeout(() => {
+        formContainer.style.display = 'none';
+        successBox.style.display = 'block';
+      }, 400);
+    });
+  </script>
+</body>
+</html>
