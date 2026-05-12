@@ -322,6 +322,12 @@
       color: var(--rule);
     }
 
+    .day-card-body {
+      font-size: 0.95rem;
+      color: var(--ink-mid);
+      line-height: 1.8;
+    }
+
     /* RSVP SECTION */
     .rsvp-section {
       padding: 6rem 2rem 7rem;
@@ -616,7 +622,7 @@
       Holman 100:<br><em>A Century of Surgery</em>
     </h1>
 
-    <p class="hero-date-line fade-up delay-3">Friday · Saturday — 2026 · Stanford, California</p>
+
 
 
 
@@ -631,65 +637,19 @@
 
   <div id="details"></div>
 
-  <!-- SECTION DIVIDER -->
-  <div class="section-band">
-    <div class="section-band-inner">
-      <span>1926</span>
-      <span class="band-rule"></span>
-      <span>Holman 100</span>
-      <span class="band-rule"></span>
-      <span>2026</span>
-    </div>
-  </div>
-
   <!-- ABOUT -->
   <section>
-    <span class="section-eyebrow">The Centennial</span>
-    <h2 class="section-title">Where <em>precision</em><br>meets purpose.</h2>
+    <span class="section-eyebrow">The Weekend</span>
+    <h2 class="section-title">Join us in <em>August.</em></h2>
     <hr class="ornament" />
     <p class="section-body">
-      Stanford Surgery traces its roots to 1908, when Stanford took over Cooper Medical College 
-      in San Francisco, and to the formal founding of its surgical division in 1926.
+      The journey begins on Friday evening, with immersive, division-specific programs designed to bridge our past with our future.
     </p>
     <br>
     <p class="section-body">
-      Through a century of firsts — the first West Coast kidney transplant, the first U.S. adult 
-      heart transplant, the CyberKnife, and beyond — Stanford Surgery has led medicine from the 
-      operating room. The Holman 100 Centennial gathers our community of faculty, alumni, and friends 
-      to honor that legacy and launch the next century with the Holman 1-10-100 Fundraising Pledge.
+      On Saturday, we gather for a rare look into the journey of Stanford Surgery over the last century, from Emile Holman's time as chair in 1926 to today. Beyond the public milestones, we will explore the untold stories and transformational figures whose quiet brilliance shaped our departments. The celebration will culminate with a gala that evening, to reconnect old friends and create new connections throughout Stanford.
     </p>
   </section>
-
-  <!-- EVENT DETAILS -->
-  <div class="event-details">
-    <div class="event-details-inner">
-      <span class="section-eyebrow">The Program</span>
-      <h2 class="section-title">The <em>Centennial</em> Weekend.</h2>
-      <hr class="ornament" />
-      <div class="day-cards">
-        <div class="day-card">
-          <span class="day-card-label">Friday Evening</span>
-          <div class="day-card-date">Welcome Reception</div>
-          <ul class="day-card-items">
-            <li>Cocktail reception</li>
-            <li>Welcome remarks</li>
-            <li>Seated dinner</li>
-            <li>Evening with colleagues</li>
-          </ul>
-        </div>
-        <div class="day-card">
-          <span class="day-card-label">Saturday</span>
-          <div class="day-card-date">Centennial Symposium</div>
-          <ul class="day-card-items">
-            <li>Full-day academic program</li>
-            <li>Five landmark chapters</li>
-            <li>Holman 1-10-100 Pledge</li>
-            <li>Celebration dinner</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- RSVP -->
   <div class="rsvp-section" id="rsvp">
@@ -721,6 +681,16 @@
             <input type="email" id="email" name="email" placeholder="jane@example.com" required />
           </div>
 
+          <div class="form-group">
+            <label for="department">Department</label>
+            <input type="text" id="department" name="department" placeholder="e.g. Cardiac Surgery" required />
+          </div>
+
+          <div class="form-group">
+            <label for="connection">Connection to Stanford Surgery</label>
+            <input type="text" id="connection" name="connection" placeholder="e.g. Alumnus, Faculty, Resident" required />
+          </div>
+
           <div class="form-group" style="margin-top: 2rem;">
             <label style="margin-bottom: 1rem; display:block;">Which days will you attend?</label>
             <div class="radio-group">
@@ -739,8 +709,22 @@
             </div>
           </div>
 
+          <div class="form-group" style="margin-top: 2rem;">
+            <label style="margin-bottom: 1rem; display:block;">Interested in a hotel block?</label>
+            <div class="radio-group">
+              <div class="radio-opt">
+                <input type="radio" id="hotel-yes" name="hotel" value="Yes" />
+                <label for="hotel-yes">Yes</label>
+              </div>
+              <div class="radio-opt">
+                <input type="radio" id="hotel-no" name="hotel" value="No" />
+                <label for="hotel-no">No</label>
+              </div>
+            </div>
+          </div>
+
           <div id="form-error" style="color: #e87c7c; font-size: 0.85rem; margin-top: 1rem; display: none; font-family: 'EB Garamond', serif;">
-            Please fill in all required fields.
+            Please fill in all fields and make your selections before submitting.
           </div>
 
           <button type="submit" class="submit-btn">Confirm RSVP →</button>
@@ -781,8 +765,10 @@
     const FIELD_FIRST_NAME   = 'entry.1639542594';
     const FIELD_LAST_NAME    = 'entry.1238259456';
     const FIELD_EMAIL        = 'entry.1299840329';
+    const FIELD_DEPARTMENT   = 'entry.1570778814';
+    const FIELD_CONNECTION   = 'entry.727990954';
     const FIELD_ATTENDANCE   = 'entry.1776379752';
-    // ────────────────────────────────────────────────────────────────────────
+    const FIELD_HOTEL        = 'entry.1469470206';
 
     const form   = document.getElementById('rsvp-form');
     const errBox = document.getElementById('form-error');
@@ -797,46 +783,36 @@
       const lastName   = document.getElementById('last-name').value.trim();
       const email      = document.getElementById('email').value.trim();
       const attendance = document.querySelector('input[name="attendance"]:checked');
+      const department = document.getElementById('department').value.trim();
+      const connection = document.getElementById('connection').value.trim();
+      const hotel      = document.querySelector('input[name="hotel"]:checked');
 
-      if (!firstName || !lastName || !email || !attendance) {
+      if (!firstName || !lastName || !email || !attendance || !department || !connection || !hotel) {
         errBox.style.display = 'block';
         return;
       }
 
-      // Submit to Google Forms via hidden iframe (no redirect)
-      const iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      iframe.name = 'hidden_iframe';
-      document.body.appendChild(iframe);
+      // Build query string
+      const params = new URLSearchParams();
+      params.append(FIELD_FIRST_NAME, firstName);
+      params.append(FIELD_LAST_NAME,  lastName);
+      params.append(FIELD_EMAIL,      email);
+      params.append(FIELD_ATTENDANCE, attendance.value);
+      params.append(FIELD_DEPARTMENT, department);
+      params.append(FIELD_CONNECTION, connection);
+      params.append(FIELD_HOTEL,      hotel ? hotel.value : '');
 
-      const hiddenForm = document.createElement('form');
-      hiddenForm.method = 'POST';
-      hiddenForm.action = GOOGLE_FORM_ACTION;
-      hiddenForm.target = 'hidden_iframe';
+      // Show success immediately (fetch will be blocked by CORS but data still submits)
+      formContainer.style.display = 'none';
+      successBox.style.display = 'block';
 
-      const fields = {
-        [FIELD_FIRST_NAME]:  firstName,
-        [FIELD_LAST_NAME]:   lastName,
-        [FIELD_EMAIL]:       email,
-        [FIELD_ATTENDANCE]:  attendance.value,
-      };
-
-      for (const [name, value] of Object.entries(fields)) {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = name;
-        input.value = value;
-        hiddenForm.appendChild(input);
-      }
-
-      document.body.appendChild(hiddenForm);
-      hiddenForm.submit();
-
-      // Show success
-      setTimeout(() => {
-        formContainer.style.display = 'none';
-        successBox.style.display = 'block';
-      }, 400);
+      // Submit via fetch (no-cors — data goes through, response is opaque)
+      fetch(GOOGLE_FORM_ACTION, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params.toString()
+      }).catch(() => {}); // silence CORS error — submission still works
     });
   </script>
 </body>
